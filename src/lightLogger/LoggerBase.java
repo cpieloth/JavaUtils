@@ -1,9 +1,11 @@
 package lightLogger;
 
+import java.io.PrintStream;
 import java.util.Set;
 
 /**
- * Basic implementation of ILogger. Output on stdo. Format: [Level.getLabel()] class: message
+ * Basic implementation of ILogger. Output on stdo. Format: [Level.getLabel()]
+ * class: message
  * 
  * @author executor
  * 
@@ -38,16 +40,20 @@ public class LoggerBase implements ILogger {
 		this.logMask = value;
 	}
 
+	private void log(PrintStream ps, Level level, Class<?> clazz, String message) {
+		if ((this.logMask & level.getValue()) == level.getValue())
+			ps.println("[" + level.getLabel() + "] " + clazz.getName() + ": "
+					+ message);
+	}
+
 	@Override
 	public void log(Level level, Class<?> clazz, String message) {
-		if ((this.logMask & level.getValue()) == level.getValue())
-			System.out.println("[" + level.getLabel() + "] " + clazz.getName()
-					+ ": " + message);
+		this.log(System.out, level, clazz, message);
 	}
 
 	@Override
 	public void logError(Class<?> clazz, String message) {
-		this.log(Level.DEFAULT.ERROR.getLevel(), clazz, message);
+		this.log(System.err, Level.DEFAULT.ERROR.getLevel(), clazz, message);
 	}
 
 	@Override
