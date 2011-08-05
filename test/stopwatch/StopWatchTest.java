@@ -181,14 +181,13 @@ public class StopWatchTest {
 	@Test
 	public void testGetTimeString() {
 		double time = stopWatch.getTime();
-		Assert.assertEquals("time as string", Double.toString(time), stopWatch.getTimeString());
-	}
-
-	@Test
-	public void testGetTimeStringStringString() {
-		double time = stopWatch.getTime();
-		String prefix = "foo", suffix = "bar";
-		Assert.assertEquals("time as string", prefix + Double.toString(time) + suffix, stopWatch.getTimeString(prefix, suffix));
+		Assert.assertEquals("time as default string", StopWatch.PREFIX + Double.toString(time) + StopWatch.SUFFIX, stopWatch.getTimeString());
+		
+		String prefix = "foo";
+		String suffix = "bar";
+		this.stopWatch = new StopWatch(prefix, suffix);
+		time = stopWatch.getTime();
+		Assert.assertEquals("time as string", prefix + Double.toString(time) + suffix, stopWatch.getTimeString());
 	}
 
 }

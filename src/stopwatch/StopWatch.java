@@ -9,13 +9,23 @@ public class StopWatch {
 	private State state;
 
 	public static final String PREFIX = "time=";
-	public static final String SUFFIX = "time=";
+	public static final String SUFFIX = ";";
+	
+	public String prefix;
+	public String suffix;
 
 	private long begin = 0, end = 0, time = 0;
 
 	public StopWatch() {
-		this.state = State.READY;
+		this(PREFIX, SUFFIX);
 	}
+	
+	public StopWatch(String prefix, String suffix) {
+		this.state = State.READY;
+		this.prefix = prefix;
+		this.suffix = suffix;
+	}
+	
 
 	public boolean start() {
 		if (this.state == State.READY) {
@@ -84,11 +94,7 @@ public class StopWatch {
 	}
 
 	public String getTimeString() {
-		return Double.toString(this.getTime());
-	}
-
-	public String getTimeString(String prefix, String suffix) {
-		return prefix + this.getTimeString() + suffix;
+		return this.prefix + Double.toString(this.getTime()) + this.suffix;
 	}
 
 }
