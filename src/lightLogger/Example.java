@@ -12,17 +12,17 @@ import java.util.Set;
 public class Example {
 
 	public static void main(String[] args) {
-		Logger.setLogger(new LoggerBase());
+		Logger.setLogger(new BasicLogger());
 		
 		doLogCalls();
 		
-		Logger.setLogMask(Level.DEFAULT.ERROR.getLevel().getValue());
+		Logger.setLogMask(Level.Default.ERROR.getValue());
 		
 		doLogCalls();
 		
 		Set<Level> newLogMask = new HashSet<Level>();
-		newLogMask.add(Level.DEFAULT.INFO.getLevel());
-		newLogMask.add(Level.DEFAULT.WARN.getLevel());
+		newLogMask.add(Level.Default.INFO.getInstance());
+		newLogMask.add(Level.Default.WARN.getInstance());
 		Logger.setLogMask(newLogMask);
 		
 		doLogCalls();
@@ -33,9 +33,9 @@ public class Example {
 		Logger.logError(Example.class, "error ...");
 		Logger.logWarn(Example.class, "warn ...");
 		Logger.logInfo(Example.class, "info ...");
-		Logger.logInfo(Example.class, "trace ...");
+		Logger.logTrace(Example.class, "trace ...");
 		Logger.logDebug(Example.class, "debug ...");
-		Logger.log(new Level(Level.DEFAULT.ERROR.getLevel().getValue(), "E-R-R-O-R"), Example.class, "e-r-r-o-r ...");
+		Logger.log(new Level(Level.Default.ERROR.getInstance().getValue(), "E-R-R-O-R"), Example.class, "e-r-r-o-r ...");
 	}
 
 }

@@ -15,20 +15,28 @@ public class Level {
 	 * @author executor
 	 * 
 	 */
-	public enum DEFAULT {
-		ERROR(new Level(1, "ERROR")), WARN(new Level(2, "WARN")), INFO(
-				new Level(4, "INFO")), TRACE(new Level(8, "TRACE")), DEBUG(
-				new Level(16, "DEBUG")), ALL(
-				new Level(Integer.MAX_VALUE, "all"));
+	public enum Default {
+		ERROR(1, "ERROR"), WARN(2, "WARN"), INFO(4, "INFO"), TRACE(8, "TRACE"), DEBUG(
+				16, "DEBUG"), ALL(Integer.MAX_VALUE, "all");
 
-		private Level level;
+		private int value;
+		private String label;
 
-		private DEFAULT(Level level) {
-			this.level = level;
+		private Default(int value, String label) {
+			this.value = value;
+			this.label = label;
 		}
 
-		public Level getLevel() {
-			return this.level;
+		public Level getInstance() {
+			return new Level(value, label);
+		}
+
+		public int getValue() {
+			return this.value;
+		}
+
+		public String getLabel() {
+			return this.label;
 		}
 
 	}

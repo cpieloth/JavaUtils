@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Logger {
 
-	private static ILogger logger = new LoggerBase();
+	private static ILogger logger = new BasicLogger();
 
 	/**
 	 * 
@@ -46,7 +46,7 @@ public class Logger {
 	 * 
 	 * @return Used implementation of ILogger.
 	 */
-	public static ILogger getLogger() {
+	public static IClassLogger getLogger() {
 		return logger;
 	}
 
@@ -118,6 +118,67 @@ public class Logger {
 	 */
 	public static void logDebug(Class<?> clazz, String message) {
 		Logger.logger.logDebug(clazz, message);
+	}
+	
+	/**
+	 * Logs a message for a object by using the specified log level.
+	 * 
+	 * @param level
+	 * @param obj
+	 * @param message
+	 */
+	public static void log(Level level, Object obj, String message) {
+		Logger.logger.log(level, obj, message);
+	}
+
+	/**
+	 * Logs a message by using the error log level.
+	 * 
+	 * @param obj
+	 * @param message
+	 */
+	public static void logError(Object obj, String message) {
+		Logger.logger.logError(obj, message);
+	}
+
+	/**
+	 * Logs a message by using the warn log level.
+	 * 
+	 * @param obj
+	 * @param message
+	 */
+	public static void logWarn(Object obj, String message) {
+		Logger.logger.logWarn(obj, message);
+	}
+
+	/**
+	 * Logs a message by using the info log level.
+	 * 
+	 * @param obj
+	 * @param message
+	 */
+	public static void logInfo(Object obj, String message) {
+		Logger.logger.logInfo(obj, message);
+	}
+
+	/**
+	 * Logs a message by using the trace log level.
+	 * 
+	 * @param obj
+	 * @param message
+	 */
+	public static void logTrace(Object obj, String message) {
+		Logger.logger.logTrace(obj, message);
+	}
+
+	/**
+	 * Logs a message by using the debug log level.
+	 * 
+	 * @param obj
+	 * @param message
+	 */
+	public static void logDebug(Object obj, String message) {
+		Logger.logger.logDebug(obj, message);
 	}
 
 }
